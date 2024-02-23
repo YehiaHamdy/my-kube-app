@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: vproDB
+  name: vpro-db
   labels:
-    app: vproDB
+    app: vpro-db
 spec:
   selector:
     matchLabels:
-      app: vproDB
+      app: vpro-db
   replicas: 1
   template:
     metadata:
       labels:
-        app: vproDB
+        app: vpro-db
     spec:
       containers:
-      - name: vproDB
+      - name: vpro-db
         image: yehiahamdy/vpro-db:v1
         volumeMounts:
         - mountPath: "/var/lib/mysql"
@@ -30,7 +30,7 @@ spec:
               name: app-secret
               key: db-pass
       nodeSelector:
-        zone: us-east-1d   # Corrected here
+        zone: us-east-1d
       volumes:
         - name: vpro-db-data
           persistentVolumeClaim:
