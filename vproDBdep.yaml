@@ -19,8 +19,8 @@ spec:
         image: yehiahamdy/vpro-db:v1
 #         args:
 #           - "--ignore-db-dir=lost+found"
-        volumeMounts: /var/lib/mysql
-        name: vprodb-data
+        volumeMounts: "/var/lib/mysql"
+        name: vpro-db-data
         ports:
         - name: vprodb-port
         - containerPort: 3306
@@ -42,5 +42,5 @@ spec:
           image: busybox:latest
           args: ["rm", "-rf", "/var/lib/mysql/lost+found"]
           volumeMounts:
-            name: vprodb-data
+            name: vpro-db-data
             mountPath: /var/lib/mysql
