@@ -17,6 +17,10 @@ spec:
       containers:
       - name: vproDB
         image: yehiahamdy/vpro-db:v1
+#         args:
+#           - "--ignore-db-dir=lost+found"
+        volumeMounts: /var/lib/mysql
+        name: vprodb-data
         ports:
         - name: vprodb-port
         - containerPort: 3306
@@ -33,3 +37,10 @@ spec:
           awsElasticBlockStore:
             volumeID: vol-01fb60286d701b19c
             fsType: ext4
+      initContainers:
+        - name: busybox
+          image: busybox:latest
+          args: ["rm", "-rf", "/var/lib/mysql/lost+found"]
+          volumeMounts:
+            name: vprodb-data
+            mountPath: /var/lib/mysql
