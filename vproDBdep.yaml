@@ -34,7 +34,7 @@ spec:
       volumes:
         - name: vpro-db-data
           persistentVolumeClaim:
-            claimName: vol-01fb60286d701b19c
+            claimName: my-ebs-pv
       initContainers:
         - name: busybox
           image: busybox:latest
