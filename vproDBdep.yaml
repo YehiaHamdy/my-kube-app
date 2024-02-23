@@ -30,8 +30,7 @@ spec:
               name: app-secret
               key: db-pass
       nodeSelector:
-        matchLabels:
-          zone: us-east-1d
+        zone: us-east-1d   # Corrected here
       volumes:
         - name: vpro-db-data
           persistentVolumeClaim:
